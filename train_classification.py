@@ -22,7 +22,7 @@ import torch.nn.functional as F
 parser = argparse.ArgumentParser()
 parser.add_argument('--batchSize', type=int, default=32, help='input batch size')
 parser.add_argument('--num_points', type=int, default=2500, help='input batch size')
-parser.add_argument('--workers', type=int, help='number of data loading workers', default=4)
+parser.add_argument('--workers', type=int, help='number of data loading workers', default=0)
 parser.add_argument('--nepoch', type=int, default=25, help='number of epochs to train for')
 parser.add_argument('--outf', type=str, default='cls',  help='output folder')
 parser.add_argument('--model', type=str, default = '',  help='model path')
