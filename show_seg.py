@@ -59,8 +59,8 @@ point = point.transpose(1,0).contiguous()
 point = Variable(point.view(1, point.size()[0], point.size()[1]))
 point = point.cuda()
 pred, _ = classifier(point)
-print(pred.data.max(2)[1].shape)
-pred_choice = pred.data.max(2)[1][0,:]
+pred = pred.squeeze()
+pred_choice = pred.data.max(1)[1] # get max index of second dim of pred
 #print(pred_choice.size())
 pred_color = cmap[pred_choice.cpu().numpy(), :]
 
