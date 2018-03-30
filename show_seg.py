@@ -50,16 +50,19 @@ cmap = np.array([cmap(i) for i in range(10)])[:,:3]
 gt = cmap[seg.numpy() - 1, :]
 
 classifier = PointNetDenseCls(k = 4)
+classifier.cuda()
 classifier.load_state_dict(torch.load(opt.model))
+classifier.eval()
 
 point = point.transpose(1,0).contiguous()
 
 point = Variable(point.view(1, point.size()[0], point.size()[1]))
+point = point.cuda()
 pred, _ = classifier(point)
-
-pred_choice = pred.data.max(2)[1][0,:,0]
+print(pred.data.max(2)[1].shape)
+pred_choice = pred.data.max(2)[1][0,:]
 #print(pred_choice.size())
-pred_color = cmap[pred_choice.numpy(), :]
+pred_color = cmap[pred_choice.cpu().numpy(), :]
 
 #print(pred_color.shape)
 

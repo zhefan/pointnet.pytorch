@@ -7,3 +7,4 @@ shapenetcore_partanno_segmentation_benchmark_v0/
 *.zip
 cls/
 seg/
+*.swp
