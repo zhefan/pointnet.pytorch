@@ -135,23 +135,30 @@ class PointNetDenseCls(nn.Module):
 
 
 if __name__ == '__main__':
-    sim_data = Variable(torch.rand(32,3,2500))
+    sim_data = Variable(torch.rand(1,3,2500))
+    print('input', sim_data.size())
     trans = STN3d()
+    trans.eval()
     out = trans(sim_data)
     print('stn', out.size())
 
     pointfeat = PointNetfeat(global_feat=True)
+    pointfeat.eval()
     out, _ = pointfeat(sim_data)
     print('global feat', out.size())
+    print(out)
 
     pointfeat = PointNetfeat(global_feat=False)
+    pointfeat.eval()
     out, _ = pointfeat(sim_data)
     print('point feat', out.size())
 
     cls = PointNetCls(k = 5)
+    cls.eval()
     out, _ = cls(sim_data)
     print('class', out.size())
 
     seg = PointNetDenseCls(k = 3)
+    seg.eval()
     out, _ = seg(sim_data)
     print('seg', out.size())

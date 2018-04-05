@@ -26,13 +26,14 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('--model', type=str, default = '',  help='model path')
 parser.add_argument('--idx', type=int, default = 0,   help='model index')
+parser.add_argument('--cls', type=str, default = 'Chair',   help='model index')
 
 
 
 opt = parser.parse_args()
 print (opt)
 
-d = PartDataset(root = 'shapenetcore_partanno_segmentation_benchmark_v0', class_choice = ['Chair'], train = False)
+d = PartDataset(root = 'shapenetcore_partanno_segmentation_benchmark_v0', class_choice = [opt.cls], train = False)
 
 idx = opt.idx
 
